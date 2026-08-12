@@ -1,369 +1,195 @@
-// ==========================================
-// ПЕРЕМЕННЫЕ
-// ==========================================
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-let selectedFood = "";
-let selectedActivity = "";
-let selectedDate = "";
-let selectedTime = "";
+    <title>Наше свидание 💗</title>
 
-let noClicks = 0;
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
 
-// ==========================================
-// ПЕРЕКЛЮЧЕНИЕ ЭКРАНОВ
-// ==========================================
+<div class="container">
 
-function showScreen(number) {
+    <!-- ЭКРАН 1 -->
+    <section class="screen active" id="screen1">
 
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen => {
-            screen.classList.remove("active");
-        });
+        <div class="bunny-box">
+            <img src="images/5467856318774320644.jpg" class="bunny">
+        </div>
 
-    document
-        .getElementById("screen" + number)
-        .classList.add("active");
-}
+        <h1>Хочешь пойти<br>со мной на свидание? 💗</h1>
 
+        <div class="buttons">
+            <button id="yesButton">Да 💕</button>
+            <button id="noButton">Нет</button>
+        </div>
 
-// ==========================================
-// КНОПКА "ДА"
-// ==========================================
+    </section>
 
-document
-    .getElementById("yesButton")
-    .addEventListener("click", function() {
 
-        showScreen(2);
+    <!-- ЭКРАН 2 -->
+    <section class="screen" id="screen2">
 
-    });
+        <h1>Урааа! 🥰</h1>
+        <p>Тогда выбери, что будем есть 💗</p>
 
+        <div class="cards">
 
-// ==========================================
-// КНОПКА "НЕТ"
-// ==========================================
+            <button class="card food" data-value="Пицца 🍕">
+                <span>🍕</span>
+                <b>Пицца</b>
+            </button>
 
-const noButton =
-    document.getElementById("noButton");
+            <button class="card food" data-value="Суши 🍣">
+                <span>🍣</span>
+                <b>Суши</b>
+            </button>
 
-const noText =
-    document.getElementById("noText");
+            <button class="card food" data-value="Бургер 🍔">
+                <span>🍔</span>
+                <b>Бургер</b>
+            </button>
 
+            <button class="card food" data-value="Мороженое 🍦">
+                <span>🍦</span>
+                <b>Мороженое</b>
+            </button>
 
-noButton.addEventListener("click", function() {
+        </div>
 
-    noClicks++;
+        <button class="next" id="foodNext">Дальше 💗</button>
 
+    </section>
 
-    const messages = [
 
-        "Ты уверена? 🥺",
+    <!-- ЭКРАН 3 -->
+    <section class="screen" id="screen3">
 
-        "Попробуй ещё раз 😭",
+        <h1>А чем займёмся? ✨</h1>
 
-        "Кнопка тоже хочет, чтобы ты нажала Да 💗",
+        <div class="cards">
 
-        "Ну пожалуйстааа 🥹",
+            <button class="card activity" data-value="Кино 🎬">
+                <span>🎬</span>
+                <b>Кино</b>
+            </button>
 
-        "Кажется, кнопка убегает 😭",
+            <button class="card activity" data-value="Прогулка 🌸">
+                <span>🌸</span>
+                <b>Прогулка</b>
+            </button>
 
-        "Последний шанс! ❤️"
+            <button class="card activity" data-value="Игры 🎮">
+                <span>🎮</span>
+                <b>Игры</b>
+            </button>
 
-    ];
+            <button class="card activity" data-value="Кафе ☕">
+                <span>☕</span>
+                <b>Кафе</b>
+            </button>
 
+        </div>
 
-    noText.textContent =
-        messages[
-            Math.min(
-                noClicks - 1,
-                messages.length - 1
-            )
-        ];
+        <button class="next" id="activityNext">Дальше 💗</button>
 
+    </section>
 
-    // Уменьшаем кнопку
 
-    const scale =
-        Math.max(
-            0.35,
-            1 - noClicks * 0.12
-        );
+    <!-- ЭКРАН 4 -->
+    <section class="screen" id="screen4">
 
-    noButton.style.transform =
-        `scale(${scale})`;
+        <h1>Выбери дату 📅</h1>
 
+        <div class="choice-list">
 
-    // После нескольких нажатий
-    // начинаем перемещать кнопку
+            <button class="date" data-value="15 августа">
+                15 августа
+            </button>
 
-    if (noClicks >= 2) {
+            <button class="date" data-value="16 августа">
+                16 августа
+            </button>
 
-        moveNoButton();
+            <button class="date" data-value="17 августа">
+                17 августа
+            </button>
 
-    }
+            <button class="date" data-value="20 августа">
+                20 августа
+            </button>
 
-});
+        </div>
 
+        <button class="next" id="dateNext">Дальше 💗</button>
 
-// ==========================================
-// ПЕРЕМЕЩЕНИЕ КНОПКИ
-// ==========================================
+    </section>
 
-function moveNoButton() {
 
-    const buttons =
-        document.querySelector(".buttons");
+    <!-- ЭКРАН 5 -->
+    <section class="screen" id="screen5">
 
-    const containerWidth =
-        buttons.clientWidth;
+        <h1>А во сколько? 🕐</h1>
 
-    const containerHeight =
-        buttons.clientHeight;
+        <div class="choice-list">
 
+            <button class="time" data-value="16:00">
+                16:00
+            </button>
 
-    const buttonWidth =
-        noButton.offsetWidth;
+            <button class="time" data-value="17:30">
+                17:30
+            </button>
 
-    const buttonHeight =
-        noButton.offsetHeight;
+            <button class="time" data-value="19:00">
+                19:00
+            </button>
 
+            <button class="time" data-value="20:30">
+                20:30
+            </button>
 
-    const maxX =
-        Math.max(
-            0,
-            containerWidth - buttonWidth
-        );
+        </div>
 
+        <button class="next" id="finishButton">
+            Всё выбрала 💗
+        </button>
 
-    const maxY =
-        Math.max(
-            0,
-            containerHeight - buttonHeight
-        );
+    </section>
 
 
-    const x =
-        Math.random() * maxX;
+    <!-- ФИНАЛ -->
+    <section class="screen" id="screen6">
 
+        <div class="final-bunny">
+            <img src="images/5467856318774320644.jpg">
+        </div>
 
-    const y =
-        Math.random() * maxY;
+        <h1>УРААА! 🥰💗</h1>
 
+        <p>Наше свидание состоится!</p>
 
-    noButton.style.position = "absolute";
+        <div class="result">
 
-    noButton.style.left = x + "px";
+            <p id="resultFood"></p>
+            <p id="resultActivity"></p>
+            <p id="resultDate"></p>
+            <p id="resultTime"></p>
 
-    noButton.style.top = y + "px";
+        </div>
 
-}
+        <div class="hearts">
+            💕 💗 💕 💗 💕
+        </div>
 
+    </section>
 
-// ==========================================
-// ВЫБОР ЕДЫ
-// ==========================================
+</div>
 
-document
-    .querySelectorAll(".food")
-    .forEach(card => {
+<script src="script.js"></script>
 
-        card.addEventListener("click", function() {
-
-            document
-                .querySelectorAll(".food")
-                .forEach(item => {
-                    item.classList.remove("selected");
-                });
-
-
-            this.classList.add("selected");
-
-
-            selectedFood =
-                this.dataset.value;
-
-        });
-
-    });
-
-
-// ==========================================
-// ПЕРЕЙТИ ПОСЛЕ ВЫБОРА ЕДЫ
-// ==========================================
-
-document
-    .getElementById("foodNext")
-    .addEventListener("click", function() {
-
-        if (!selectedFood) {
-
-            alert("Сначала выбери, что будем кушать 💗");
-
-            return;
-        }
-
-
-        showScreen(3);
-
-    });
-
-
-// ==========================================
-// ВЫБОР ЗАНЯТИЯ
-// ==========================================
-
-document
-    .querySelectorAll(".activity")
-    .forEach(card => {
-
-        card.addEventListener("click", function() {
-
-            document
-                .querySelectorAll(".activity")
-                .forEach(item => {
-                    item.classList.remove("selected");
-                });
-
-
-            this.classList.add("selected");
-
-
-            selectedActivity =
-                this.dataset.value;
-
-        });
-
-    });
-
-
-// ==========================================
-// ПЕРЕЙТИ К ДАТЕ
-// ==========================================
-
-document
-    .getElementById("activityNext")
-    .addEventListener("click", function() {
-
-        if (!selectedActivity) {
-
-            alert("Сначала выбери, чем будем заниматься 💗");
-
-            return;
-        }
-
-
-        showScreen(4);
-
-    });
-
-
-// ==========================================
-// ВЫБОР ДАТЫ
-// ==========================================
-
-document
-    .querySelectorAll(".date")
-    .forEach(button => {
-
-        button.addEventListener("click", function() {
-
-            document
-                .querySelectorAll(".date")
-                .forEach(item => {
-                    item.classList.remove("selected");
-                });
-
-
-            this.classList.add("selected");
-
-
-            selectedDate =
-                this.dataset.value;
-
-        });
-
-    });
-
-
-// ==========================================
-// ВЫБОР ВРЕМЕНИ
-// ==========================================
-
-document
-    .querySelectorAll(".time")
-    .forEach(button => {
-
-        button.addEventListener("click", function() {
-
-            document
-                .querySelectorAll(".time")
-                .forEach(item => {
-                    item.classList.remove("selected");
-                });
-
-
-            this.classList.add("selected");
-
-
-            selectedTime =
-                this.dataset.value;
-
-        });
-
-    });
-
-
-// ==========================================
-// ФИНАЛ
-// ==========================================
-
-document
-    .getElementById("finishButton")
-    .addEventListener("click", function() {
-
-
-        if (!selectedDate) {
-
-            alert("Выбери дату 📅");
-
-            return;
-        }
-
-
-        if (!selectedTime) {
-
-            alert("Выбери время 🕐");
-
-            return;
-        }
-
-
-        document
-            .getElementById("resultFood")
-            .textContent =
-            "🍓 " + selectedFood;
-
-
-        document
-            .getElementById("resultActivity")
-            .textContent =
-            "✨ " + selectedActivity;
-
-
-        document
-            .getElementById("resultDate")
-            .textContent =
-            "📅 " + selectedDate;
-
-
-        document
-            .getElementById("resultTime")
-            .textContent =
-            "🕐 " + selectedTime;
-
-
-        showScreen(5);
-
-    });
+</body>
+</html>
