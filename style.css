@@ -1,0 +1,559 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    background: #ffe8ef;
+
+    color: #30252a;
+
+    min-height: 100vh;
+}
+
+
+/* ОБЩИЙ ЭКРАН */
+
+.screen {
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px 20px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+.screen.active {
+    display: flex;
+}
+
+
+/* ПЕРВЫЙ ЭКРАН */
+
+#screen1 {
+    background: #ffdce6;
+}
+
+
+.bunny {
+
+    width: min(330px, 75vw);
+
+    max-height: 350px;
+
+    object-fit: contain;
+
+    margin-bottom: 10px;
+}
+
+
+.photo {
+
+    position: absolute;
+
+    top: 9%;
+
+    right: 15%;
+
+    width: 125px;
+
+    height: 125px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid white;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+}
+
+
+h1 {
+
+    text-align: center;
+
+    font-size: clamp(28px, 7vw, 48px);
+
+    line-height: 1.15;
+
+    margin: 10px 0 25px;
+}
+
+
+h2 {
+
+    text-align: center;
+
+    font-size: clamp(28px, 7vw, 42px);
+
+    margin: 10px 0;
+}
+
+
+.subtitle {
+
+    font-size: 18px;
+
+    color: #80636c;
+
+    text-align: center;
+
+    margin-top: 0;
+}
+
+
+/* КНОПКИ */
+
+.buttons {
+
+    display: flex;
+
+    gap: 20px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    width: 100%;
+
+    min-height: 80px;
+}
+
+
+button {
+
+    font-family: inherit;
+
+    border: none;
+
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.yes,
+.no {
+
+    padding: 17px 35px;
+
+    border-radius: 50px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+
+.yes {
+
+    background: #f24b86;
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px rgba(242,75,134,0.3);
+}
+
+
+.yes:hover {
+
+    transform: scale(1.05);
+}
+
+
+.no {
+
+    background: white;
+
+    color: #555;
+
+    border: 2px solid #f2b6c8;
+}
+
+
+/* ТЕКСТ ПОСЛЕ НАЖАТИЯ НЕТ */
+
+#noText {
+
+    min-height: 30px;
+
+    color: #d63d70;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+/* ДЕКОР */
+
+.decor {
+
+    position: absolute;
+
+    font-size: 70px;
+
+    color: #f68ba8;
+
+    transform: rotate(-20deg);
+
+    left: 7%;
+
+    top: 20%;
+
+    opacity: 0.7;
+}
+
+
+.decor2 {
+
+    left: auto;
+
+    right: 8%;
+
+    top: 30%;
+
+    transform: rotate(20deg);
+}
+
+
+.decor3 {
+
+    left: 15%;
+
+    top: auto;
+
+    bottom: 10%;
+}
+
+
+/* КАРТОЧКИ */
+
+.cards {
+
+    width: min(700px, 100%);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin: 25px 0;
+}
+
+
+.card {
+
+    background: #f48da7;
+
+    min-height: 180px;
+
+    border-radius: 25px;
+
+    padding: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #30252a;
+
+    border: 4px solid transparent;
+
+    transition: 0.2s;
+
+    box-shadow:
+        0 8px 20px rgba(100,40,60,0.08);
+}
+
+
+.card span {
+
+    font-size: 75px;
+}
+
+
+.card b {
+
+    font-size: 18px;
+}
+
+
+.card:hover {
+
+    transform: translateY(-4px);
+}
+
+
+.card.selected {
+
+    border-color: #e73476;
+
+    background: #ffb3c5;
+
+    transform: scale(1.03);
+}
+
+
+/* КНОПКА ДАЛЬШЕ */
+
+.next {
+
+    background: #e93476;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    padding: 16px 35px;
+
+    border-radius: 50px;
+
+    box-shadow:
+        0 8px 20px rgba(233,52,118,0.25);
+
+    transition: 0.2s;
+}
+
+
+.next:hover {
+
+    transform: scale(1.05);
+}
+
+
+/* ДАТА И ВРЕМЯ */
+
+.date-buttons,
+.time-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 15px 0 30px;
+
+    max-width: 600px;
+}
+
+
+.date,
+.time {
+
+    background: white;
+
+    color: #633c49;
+
+    padding: 14px 22px;
+
+    border-radius: 18px;
+
+    font-size: 17px;
+
+    border: 3px solid transparent;
+
+    transition: 0.2s;
+}
+
+
+.date.selected,
+.time.selected {
+
+    border-color: #e93476;
+
+    background: #ffc0d0;
+}
+
+
+/* ФИНАЛ */
+
+.final {
+
+    background:
+        radial-gradient(
+            circle at top,
+            #fff4f7,
+            #ffdce6
+        );
+}
+
+
+.final-bunny {
+
+    width: min(280px, 65vw);
+}
+
+
+.hearts {
+
+    font-size: 30px;
+
+    margin-bottom: 5px;
+
+    animation: heartbeat 1.5s infinite;
+}
+
+
+.final-text {
+
+    text-align: center;
+
+    font-size: 20px;
+}
+
+
+.result {
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 10px 25px;
+
+    margin: 15px 0;
+
+    width: min(400px, 90%);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.08);
+}
+
+
+.result p {
+
+    font-size: 18px;
+
+    text-align: center;
+
+    margin: 13px;
+}
+
+
+.love {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #e93476;
+}
+
+
+/* АНИМАЦИЯ СЕРДЕЦ */
+
+@keyframes heartbeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding: 25px 15px;
+    }
+
+
+    .photo {
+
+        width: 95px;
+
+        height: 95px;
+
+        top: 7%;
+
+        right: 8%;
+    }
+
+
+    .bunny {
+
+        width: 70vw;
+
+        max-height: 300px;
+    }
+
+
+    .cards {
+
+        gap: 10px;
+    }
+
+
+    .card {
+
+        min-height: 150px;
+
+        padding: 10px;
+
+        border-radius: 20px;
+    }
+
+
+    .card span {
+
+        font-size: 55px;
+    }
+
+
+    .card b {
+
+        font-size: 16px;
+    }
+
+
+    .yes,
+    .no {
+
+        padding: 14px 28px;
+
+        font-size: 18px;
+    }
+}
